@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import * as d3 from 'd3';
 import {Cell} from './Cell.vue'
 import {Grille} from '@/models/models'
 
