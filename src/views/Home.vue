@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Garden/>
+    <v-select :options="weekOptions"></v-select>
   </div>
 </template>
 
@@ -13,5 +14,13 @@ export default {
   components: {
     Garden
   },
+  data () {
+    return {
+      weekOptions: []
+    }
+  },
+  created () {
+    this.weekOptions = this.$store.state.weekOptions;
+  }
 }
 </script>
