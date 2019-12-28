@@ -19,7 +19,13 @@ export default {
       required: true
     },
   },
-  mounted () {
+  data() {
+    return {
+      content: {}
+    }
+  },
+  created () {
+    this.content = null;
   },
   methods: {
   }
