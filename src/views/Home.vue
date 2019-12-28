@@ -1,28 +1,17 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <div v-for="grid in grids" :key="grid.id">
-      <Grid :grid="grid"/>
-    </div>
+    <Garden/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Grid from '@/components/Grid.vue'
+import Garden from '@/components/Garden.vue'
 
 export default {
   name: 'home',
   components: {
-    Grid
+    Garden
   },
-  data () {
-    return {
-      grids: []
-    }
-  },
-  created () {
-    this.grids = this.$store.state.grids;
-  }
 }
 </script>

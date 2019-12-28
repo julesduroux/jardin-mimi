@@ -53,7 +53,7 @@ export default {
 .cell-content {
   border: 1px solid black;
   overflow: hidden;
-  height: 40px;
-  width: 40px;
+  height: 10px;
+  width: 10px;
 }
 </style>

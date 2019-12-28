@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     grids: [
       {
-        id: 1, x: 428, y: 249, rotation:-37,
+        id: 1, x: 2185, y: 1460, rotation:26,
         cells: [
           [{contents: [25]},{contents: [25,26]},{contents: [25,26]},{contents: [26]},{},{},{}],
           [{contents: [25]},{contents: [25,26]},{contents: [25,26]},{contents: [26]},{},{},{}],
