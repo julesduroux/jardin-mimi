@@ -1,9 +1,11 @@
 <template>
   <div>
-    <table>
-      <tr v-for="(raw, index) in grid.cells" :key="index">
-        <td v-for="(cell, index) in raw" :key="index">
-          <Cell :cell="cell"></Cell>
+    <table class="grid">
+      <tr class="row" v-for="(raw, index) in grid.cells" :key="index">
+        <td class="cell" v-for="(cell, index) in raw" :key="index">
+          <div class="cell-content">
+            <Cell :cell="cell"></Cell>
+          </div>
         </td>
       </tr>
     </table>
@@ -34,3 +36,24 @@ export default {
   }
 }
 </script>
+<style scoped>
+.grid {
+  border: 1px solid black;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.row {
+  margin: 0px;
+  padding: 0px;
+}
+.cell {
+  margin: 0px;
+  padding: 0px;
+}
+.cell-content {
+  border: 1px solid black;
+  overflow: hidden;
+  height: 40px;
+  width: 40px;
+}
+</style>

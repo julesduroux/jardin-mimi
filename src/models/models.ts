@@ -45,23 +45,23 @@ export class Grid{
     id: Guid;
     x: number; // coordonnée du point en haut à gauche de la grille
     y: number; // coordonnée du point en haut à gauche de la grille
-    lines: number; //Nombre de carré de 5cm x 5cm de hauteur de la grille
+    rows: number; //Nombre de carré de 5cm x 5cm de hauteur de la grille
     columns: number; //Nombre de carré de 5cm x 5cm de largeur de la grille
     rotation: number; //angle de rotation de la grille en degrés
     cells: Cell[][];
 
-    constructor(x: number, y: number, hauteur: number, largeur: number, rotation: number) {
+    constructor(x: number, y: number, rows: number, columns: number, rotation: number) {
         this.id = Guid.create();
         this.x = x;
         this.y = y;
-        this.lines = hauteur;
-        this.columns = largeur;
+        this.rows = rows;
+        this.columns = columns;
         this.rotation = rotation;
         this.cells = new Array<Array<Cell>>();
 
-        for(var i: number = 0; i < hauteur; i++) {
+        for (var i: number = 0; i < rows; i++) {
             this.cells[i] = [];
-            for(var j: number = 0; j< largeur; j++) {
+            for (var j: number = 0; j < columns; j++) {
                 this.cells[i][j] = new Cell();
             }
         }
