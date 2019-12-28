@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-  
+
   export class Plant {
     code: string;
     diameter: number; // nombre de case de 5cm x 5cm de large et de haut.
@@ -19,16 +19,16 @@ import { Guid } from "guid-typescript";
 
   export class Content {
     id: Guid;
-    semaineDebut: number; // semaine où la plante a été plantée
-    anneeDebut: number; // année où la plante a été plantée
+    startWeek: number; // semaine où la plante a été plantée
+    startYear: number; // année où la plante a été plantée
     idPlant: string; // Id de la plante
     idGrid: Guid; // Id de la grille qui contient ce contenu
 
-    constructor(semaineDebut: number, anneeDebut: number, idPlant: string, idGrid : Guid)
+    constructor(startWeek: number, startYear: number, idPlant: string, idGrid : Guid)
     {
         this.id = Guid.create();
-        this.semaineDebut = semaineDebut;
-        this.anneeDebut = anneeDebut;
+        this.startWeek = startWeek;
+        this.startYear = startYear;
         this.idPlant = idPlant;
         this.idGrid = idGrid;
     }
@@ -60,7 +60,7 @@ export class Grid{
         this.columns = largeur;
         this.rotation = rotation;
         this.cells = new Array<Array<Cell>>();
-        
+
         for(var i: number = 0; i < hauteur; i++) {
             this.cells[i] = [];
             for(var j: number = 0; j< largeur; j++) {
