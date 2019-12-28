@@ -20,20 +20,12 @@ export default {
   components: {
     Cell
   },
-  data() {
-    return {
-    }
-  },
   props: {
     grid: {
       type: Object,
       required: true
     },
   },
-  mounted () {
-  },
-  methods: {
-  }
 }
 </script>
 <style scoped>

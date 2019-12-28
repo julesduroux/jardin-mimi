@@ -41,6 +41,7 @@ export default {
 <style scoped>
 .garden {
   position: absolute;
+
 }
 .garden-img {
   width: 7500px;
