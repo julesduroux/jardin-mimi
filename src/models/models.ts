@@ -4,15 +4,15 @@ import { Guid } from "guid-typescript";
     code: string;
     diameter: number; // nombre de case de 5cm x 5cm de large et de haut.
     name: string; // nom de la plante
-    lifetime: number; //Nombre de semaines de vie de la plante.
+    indicativeLifetime: number; //Nombre de semaines de vie de la plante.
     imagePath: string; //chemin vers l'image
 
-    constructor(code: string, diameter: number, name: string, lifetime : number, imagePath : string)
+    constructor(code: string, diameter: number, name: string, indicativeLifetime : number, imagePath : string)
     {
         this.code = code;
         this.diameter = diameter;
         this.name = name;
-        this.lifetime = lifetime;
+        this.indicativeLifetime = indicativeLifetime;
         this.imagePath = imagePath;
     }
   }
@@ -20,17 +20,15 @@ import { Guid } from "guid-typescript";
   export class Content {
     id: Guid;
     startWeek: number; // semaine où la plante a été plantée
-    startYear: number; // année où la plante a été plantée
-    idPlant: string; // Id de la plante
-    idGrid: Guid; // Id de la grille qui contient ce contenu
+    codePlant: string; // Id de la plante
+    lifetime : number;
 
-    constructor(startWeek: number, startYear: number, idPlant: string, idGrid : Guid)
+    constructor(startWeek: number, codePlant: string, lifetime: number)
     {
         this.id = Guid.create();
         this.startWeek = startWeek;
-        this.startYear = startYear;
-        this.idPlant = idPlant;
-        this.idGrid = idGrid;
+        this.codePlant = codePlant;
+        this.lifetime = lifetime;
     }
   }
 
