@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{cell.type}}
+    {{content}}
   </div>
 </template>
 <script>
@@ -20,14 +20,15 @@ export default {
     },
   },
   data() {
-    return {
-      content: {}
-    }
   },
   created () {
-    this.content = null;
   },
-  methods: {
+  computed: {
+    content() {
+      return this.cell.contents
+      .map(contentId => this.$store.state.contents[contentId])
+      .find(content => ((content.startWeek > this.week) && ((content.startWeek + content.lifetime ) < this.week)));
+    }
   }
 }
 </script>

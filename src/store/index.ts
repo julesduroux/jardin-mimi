@@ -22,11 +22,11 @@ export default new Vuex.Store({
       26: { startWeek: 44, lifetime: 3, codePlant: 'haricot'},
       84: { startWeek: 39, lifetime: 3, codePlant: 'carrot'}
     },
-    plants: [
-      {code: 'carrot', diameter: 1, name: "carottes", imagePath: "assets/carottes.jpg"},
-      {code: 'harricot', diameter: 3, name: "harricot vert", imagePath: "assets/harricot.jpg"},
-      {code: 'courgebut', diameter: 16, name: "courge butternut", imagePath: "assets/courgebut.jpg"}
-    ]
+    plants: {
+      'carrot': {diameter: 1, name: "carottes", imagePath: "assets/carottes.jpg"},
+      'harricot': {diameter: 3, name: "harricot vert", imagePath: "assets/harricot.jpg"},
+      'courgebut': {diameter: 16, name: "courge butternut", imagePath: "assets/courgebut.jpg"}
+    }
   },
   mutations: {
   },
