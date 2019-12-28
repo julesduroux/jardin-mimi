@@ -1,15 +1,16 @@
-import { Grille, Plante} from '../models/models'
+import { Grid, Plant} from '../models/models'
 
 export default class State {
-    grilles: Grille[] = [
-        new Grille(25,50,8,10,45),
-        new Grille(100,200,12,4,0)
+    grilles: Grid[] = [
+        new Grid(428,249,128,48,-37),
+        new Grid(700,385,164,46,-38),
+        new Grid(912,542,182,39,-31)
     ]
 
-    plantes: Plante[] = [
-        new Plante("carotte",1,"carotte",12,"test.jpg"),
-        new Plante("haricot",3,"harricot vert",24,"harricot.jpg"),
-        new Plante("courgebut",6,"Courge butternut",36,"courge.jpg")
+    plantes: Plant[] = [
+        new Plant("carotte",1,"carotte",12,"test.jpg"),
+        new Plant("haricot",3,"harricot vert",24,"harricot.jpg"),
+        new Plant("courgebut",6,"Courge butternut",36,"courge.jpg")
     ]
 
 }
