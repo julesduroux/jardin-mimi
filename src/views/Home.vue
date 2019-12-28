@@ -1,18 +1,25 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-for="grid in grids" :key="grid.id">
+      <Grid :grid="grid"/>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Grid from '@/components/Grid.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Grid
+  },
+  data () {
+    return {
+      grids: [{id: 1, cells: [[{type: 'courge'}]]}]
+    }
   }
 }
 </script>
