@@ -9,32 +9,32 @@ export default new Vuex.Store({
   state: {
     grids: [
       {
-        id: 1, x: 2185, y: 1460, rotation: 26,
-        cells: genereateGrid(130, 30)
+        id: 1, x: 2130, y: 1434, rotation: 26,
+        cells: genereateGrid(145, 34)
       },
       {
-        id: 2, x: 2760, y: 1770, rotation: 26.5,
-        cells: genereateGrid(138, 30)
+        id: 2, x: 2680, y: 1697, rotation: 26.5,
+        cells: genereateGrid(165, 37)
       },
       {
-        id: 3, x: 3280, y: 2100, rotation: 23,
-        cells: genereateGrid(136, 45)
+        id: 3, x: 3176, y: 2033, rotation: 23,
+        cells: genereateGrid(160, 52)
       },
       {
-        id: 4, x: 4000, y: 2375, rotation: 21,
-        cells: genereateGrid(136, 28)
+        id: 4, x: 3891, y: 2291, rotation: 21,
+        cells: genereateGrid(160, 34)
       },
       {
-        id: 5, x: 4500, y: 2500, rotation: 16,
-        cells: genereateGrid(136, 25)
+        id: 5, x: 4382, y: 2437, rotation: 16,
+        cells: genereateGrid(160, 29)
       },
       {
-        id: 6, x: 4975, y: 2650, rotation: 11,
-        cells: genereateGrid(125, 25)
+        id: 6, x: 4849, y: 2563, rotation: 11,
+        cells: genereateGrid(145, 29)
       },
       {
-        id: 7, x: 5465, y: 2775, rotation: 7,
-        cells: genereateGrid(110, 30)
+        id: 7, x: 5306, y: 2675, rotation: 7,
+        cells: genereateGrid(128, 38)
       },
     ],
     contents: {
