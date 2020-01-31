@@ -38,14 +38,14 @@ export default new Vuex.Store({
       },
     ],
     contents: {
-      25: { startWeek: 40, lifetime: 3, codePlant: 'haricot' },
-      26: { startWeek: 44, lifetime: 3, codePlant: 'haricot' },
-      84: { startWeek: 39, lifetime: 3, codePlant: 'carrot' }
+      25: { startWeek: 40, lifetime: 3, codePlant: 'carrotte' },
+      26: { startWeek: 44, lifetime: 3, codePlant: 'harricot' },
+      84: { startWeek: 39, lifetime: 3, codePlant: 'carrotte' }
     },
     plants: {
-      'carrotte': { diameter: 1, name: "carotte", imagePath: "../assets/carottes.jpg", color: "orange" },
-      'harricot': { diameter: 3, name: "harricot vert", imagePath: "../assets/harricot.jpg", color: "green" },
-      'courge': { diameter: 16, name: "courge", imagePath: "../assets/courge.jpg", color: "red" }
+      'carrotte': { diameter: 1, name: "carotte", slug: "carotte", imagePath: "/carotte.jpg", color: "orange" },
+      'harricot': { diameter: 3, name: "harricot vert", slug: "harricot", imagePath: "/harricot.jpg", color: "green" },
+      'courge': { diameter: 16, name: "courge", slug: "courge", imagePath: "/courge.jpg", color: "red" }
     },
     activeWeek: 40,
     weekOptions: [{ label: 'Sem 1 (1 Janvier -> 5 Janvier)', code: 1 },

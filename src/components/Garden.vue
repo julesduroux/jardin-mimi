@@ -2,29 +2,30 @@
   <div>
     <div class="garden">
       <svg ref="gardenSvg" :viewBox="getViewBox()" width=1500 height=895 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <pattern :id="plant.slug" :width="getPlantSize(plant)" :height="getPlantSize(plant)" v-for="plant in plants" :key="plant.slug">
+              <image :xlink:href="plant.imagePath"/>
+          </pattern>
+        </defs>
         <g class="svg-pan-zoom_viewport">
-          <image href="../assets/garden.png"  :width="getProcessedImageWidth()" :height="getProcessedImageHeight()"/>
-          <g class="grid" v-for="grid in grids" :key="grid.id" :transform="getGridPosition(grid)">
-            <g v-for="(raw, rawIndex) in grid.cells" :key="rawIndex">
-              <rect :x="cellSizePx * index" :y="cellSizePx * rawIndex" :width="cellSizePx" :height="cellSizePx" style="fill:rgba(0,0,0,0);stroke-width:1;stroke:rgb(0,0,0)" v-for="(cell, index) in raw" :key="index"/>
-            </g>
+          <image href="/garden.png"  :width="getProcessedImageWidth()" :height="getProcessedImageHeight()"/>
+          <g class="grid" v-for="grid in renderedGrid" :key="grid.id" :transform="`translate(${grid.x}, ${grid.y}) rotate(${grid.rotation})`">
+            <rect :x="rect.x" :y="rect.y" :width="rect.size" :height="rect.size" :style="rect.style" v-for="(rect, index) in grid.rects" :key="index"/>
           </g>
         </g>
-          <!-- <Grid :grid="grid"/> -->
       </svg>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import Grid from '@/components/Grid.vue'
+import { mapState } from 'vuex'
+
 import svgPanZoom from 'svg-pan-zoom';
 
 export default {
   name: 'garden',
   components: {
-    // Grid
   },
   data () {
     return {
@@ -39,6 +40,7 @@ export default {
   },
   created () {
     this.grids = this.$store.state.grids;
+    this.grids[0].cells[20][20].contents.push(25);
   },
   mounted() {
     svgPanZoom(this.$refs.gardenSvg, {
@@ -50,7 +52,7 @@ export default {
       , mouseWheelZoomEnabled: true
       , preventMouseEventsDefault: true
       , zoomScaleSensitivity: 0.2
-      , minZoom: 0.1
+      , minZoom: 1
       , maxZoom: 10
       , fit: true
       , contain: false
@@ -64,15 +66,56 @@ export default {
       , eventsListenerElement: null
     });
   },
+  computed: {
+    ...mapState(['activeWeek', 'contents', 'plants']),
+    weekContent() {
+      return Object.keys(this.contents)
+        .filter(contentId => {
+          const content = this.contents[contentId]
+          return (this.activeWeek >= content.startWeek) && (this.activeWeek < (content.startWeek + content.lifetime ))
+        }).reduce((acc, contentId) => {
+          acc[contentId] = this.contents[contentId]
+          return acc
+        }, {})
+    },
+    weekContentIds() {
+      return Object.keys(this.weekContent)
+    },
+    renderedGrid() {
+      const renderedCells = new Set()
+      return this.grids.map(grid => {
+        const rects = [];
+        grid.cells.forEach((row, rowIndex) => {
+          row.forEach((cell, columnIndex) => {
+            const contentId = this.getWeekContentId(cell);
+            if(contentId && !renderedCells.has(contentId)) {
+              renderedCells.add(contentId)
+              const content = this.weekContent[contentId]
+              const plant = this.getPlant(content)
+              const size = this.getPlantSize(plant)
+              const rect = {
+                x: this.cellSizePx * columnIndex,
+                y: this.cellSizePx * rowIndex,
+                size: size,
+                style: `fill:url(#${plant.slug})`
+              }
+              rects.push(rect);
+            }
+          })
+        })
+        return {
+          ...grid,
+          rects
+        }
+      })
+    },
+  },
   methods: {
     getGridPosition(grid) {
       return `translate(${grid.x}, ${grid.y}) rotate(${grid.rotation})`
-      // return {
-      //   transform: `translate(${grid.x}, ${grid.y}) rotate(${grid.rotation} deg)`,
-      //   transformOrigin: '0px 0px',
-      //   // top: grid.y + 'px',
-      //   // left: grid.x + 'px'
-      // }
+    },
+    getPlantSize(plant) {
+      return this.cellSizePx * plant.diameter
     },
     getImageRatio()
     {
@@ -89,20 +132,31 @@ export default {
     getViewBox()
     {
       return `0 0 ${this.getProcessedImageWidth()} ${this.getProcessedImageHeight()}`;
+    },
+    getWeekContentId(cell) {
+      if(cell.contents.length) {
+        const contentId = cell.contents
+          .find(contentId => !!this.weekContent[contentId])
+        return contentId || null;
+      }
+      return null;
+    },
+    getPlant(content) {
+      return this.$store.state.plants[content.codePlant]
+    },
+    getStyle(cell) {
+      const contentId = this.getWeekContentId(cell);
+      if(contentId) {
+        const content = this.weekContent[contentId];
+        return this.getPlant(content).color
+      }
+      return "rgba(0,0,0,0)";
     }
   }
 }
 </script>
 <style scoped>
-.garden {
-  position: absolute;
-
-}
-/* .garden-img {
-  width: 7500px;
-  height: auto;
-}
-.grid {
+/* .garden {
   position: absolute;
 } */
 </style>
